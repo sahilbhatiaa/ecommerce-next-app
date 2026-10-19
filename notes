@@ -1,0 +1,54 @@
+########################Website Run Commands — Command # Meaning#############
+
+Command	Meaning
+cd ~/E-commerce-NEXT-APP	#Website ke project folder mein jaana.
+ls	                         #Project files aur folders dekhna.
+npm install	                 #Project ki required dependencies install karna.
+nano .env.local	                 #Environment variables ki file create ya edit karna.
+npm run dev	                  #Website ko development mode mein start karna.
+npm run build	                  #Production ke liye website build karna.
+npm start	                  #Production build ko run karna, agar project mein start script configured hai.
+Ctrl + C	                  #Running development server ko stop karna.
+
+
+####    MongoDB Database Troubleshooting Commands — Ubuntu Linux
+1. Check MongoDB Installation
+Command	Meaning
+mongod --version	Checks the MongoDB server version.
+mongosh --version	Checks the MongoDB Shell version.
+dpkg -l \| grep -i mongo	Checks installed MongoDB packages.
+
+###########################2. Check and Manage the Database Service
+Command	Meaning
+sudo systemctl status mongod	Checks whether the MongoDB service is running.
+sudo systemctl start mongod	Starts the MongoDB service.
+sudo systemctl restart mongod	Restarts the MongoDB service.
+sudo systemctl enable mongod	Configures MongoDB to start automatically at boot.
+sudo systemctl stop mongod	Stops the MongoDB service.
+sudo systemctl daemon-reload	Reloads systemd service configuration files.
+
+
+
+
+
+
+############################3. Check Database Errors and Logs
+
+Command	Meaning
+sudo journalctl -u mongod -n 50 --no-pager	Displays the latest 50 MongoDB log messages.
+sudo journalctl -u mongod -f	Displays MongoDB logs in real time.
+##########################4. Check Database Connectivity
+Command	Meaning
+sudo ss -lntp \| grep 27017	Checks whether a process is listening on MongoDB's default port, 27017.
+mongosh "mongodb://127.0.0.1:27017"	Connects to the local MongoDB server.
+mongosh --eval 'db.runCommand({ ping: 1 })'	Tests whether MongoDB responds to a ping command.
+mongosh --eval 'show dbs'	Lists available databases.
+
+
+#########################5. Troubleshoot the Next.js Website Database Connection
+Command	Meaning
+cd ~/E-commerce-NEXT-APP	Opens the project directory.
+grep -R "DB_URI" utils	Searches the utils directory for references to the database connection variable.
+npm run dev	Starts the Next.js development server.
+The project's .env.local file should contain a local MongoDB connection string:
+DB_URI=mongodb://127.0.0.1:27017/ecommerce
